@@ -1,0 +1,12 @@
+.gui {
+    min-height: 30em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.panel {
+    max-width: 50%;
+    padding: 1em 2em;
+    background-color: #eee;
+    border-radius: 3px;
+}
