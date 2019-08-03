@@ -3,6 +3,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssVars = require('postcss-simple-vars');
 const postcssImport = require('postcss-import');
+const { spawn } = require('child_process');
+const path = require('path');
 
 module.exports = {
   entry: {
@@ -58,6 +60,7 @@ module.exports = {
       },
     ],
   },
+  target: 'electron-renderer',
   plugins: [
     new HtmlWebPackPlugin({
       template: './src/index.html',
@@ -68,4 +71,16 @@ module.exports = {
       chunkFilename: '[id].[chunkhash].css',
     }),
   ],
+  devServer: {
+    contentBase: path.resolve(__dirname, 'dist'),
+    before() {
+      spawn(
+        'electron',
+        ['.'],
+        { shell: true, env: process.env, stdio: 'inherit' },
+      )
+        .on('close', () => process.exit(0))
+        .on('error', spawnError => console.error(spawnError));
+    },
+  },
 };

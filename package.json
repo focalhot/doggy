@@ -2,10 +2,28 @@
   "name": "doggy",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
-    "build": "webpack --mode production"
+    "start": "webpack-dev-server --mode development",
+    "prod": "webpack --mode production",
+    "build": "npm run prod && electron-builder",
+    "test:lint": "eslint . --ext .js,.jsx"
+  },
+  "build": {
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "http://localhost:8000/"
+      }
+    ],
+    "directories": {
+      "output": "./builds"
+    },
+    "files": [
+      "main.js",
+      "dist/**",
+      "node_modules"
+    ]
   },
   "repository": {
     "type": "git",
@@ -25,6 +43,8 @@
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.0.0",
+    "electron": "^6.0.0",
+    "electron-builder": "^21.2.0",
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-loader": "^2.2.1",
@@ -43,6 +63,8 @@
     "webpack-dev-server": "^3.7.2"
   },
   "dependencies": {
+    "electron-log": "^3.0.7",
+    "electron-updater": "^4.1.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }
