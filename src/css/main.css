@@ -1,6 +1,15 @@
 html, body {
     height: 100%;
 }
+* {
+    box-sizing: border-box;
+}
+:focus {
+    outline: 0;
+}
 :global(#app) {
+    height: 100%;
+}
+:global(.wrapper) {
     height: 100%;
 }

@@ -6,7 +6,7 @@ import './css/normalize.css';
 import './css/main.css';
 
 const Index = () => (
-  <div>
+  <div className="wrapper">
     <Gui />
   </div>
 );
